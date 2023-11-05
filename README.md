@@ -10,6 +10,8 @@ InverseGPT takes the concept of generative AI and flips it, focusing on deducing
 
 Experience InverseGPT in action: [InverseGPT Live Demo](https://fabriziosalmi.github.io/InverseGPT/)
 
+![#image](https://github.com/fabriziosalmi/InverseGPT/blob/main/Screenshot.png?raw=true)
+
 ## Features
 
 - **Prompt Reconstruction**: Generates plausible questions or prompts for any given answer.
