@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InverseGPT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      body {
+        background-color: #f7f7f7;
+        font-size: large;
+        color: #3e3e3e;
+      }
+
+      .chat-container {
+        margin-top: 50px;
+        border-top-left-radius: 6;
+        border-top-right-radius: 6;
+      }
+
+      .chat-box {
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #dddddd;
+        height: 400px;
+        overflow-y: auto;
+      }
+
+      .chat-message {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+      }
+
+      .user-message {
+        text-align: left;
+        background-color: #ebeceb;
+        ;
+      }
+
+      .chatbot-message {
+        text-align: left;
+        background-color: #f4f4f4;
+      }
+
+      /* Add some spacing for the send icon button */
+      .input-group-append {
+        margin-left: -40px;
+      }
+
+      .input-group-text {
+        background-color: transparent;
+        border: none;
+      }
+
+      .input-group .form-control {
+        border-right: 0;
+      }
+
+      /* Adjust the send button position to align with the input field */
+      .send-btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      textarea.form-control {
+        height: auto;
+        margin-right: 40px;
+      }
+
+      .input-group>.input-group-append>.btn,
+      .input-group>.input-group-append>.input-group-text,
+      .input-group>.input-group-prepend:first-child>.btn:not(:first-child),
+      .input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child),
+      .input-group>.input-group-prepend:not(:first-child)>.btn,
+      .input-group>.input-group-prepend:not(:first-child)>.input-group-text {
+        border-top-left-radius: 6;
+      }
+
+      .chat-box {
+        border: 1px solid #e6e6e6;
+        background-color: #fbfbfb;
+        box-shadow: #eee inset 0px 0px 15px 0px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      .chat-fix {
+        margin-top: 10px;
+        margin-bottom: 30px;
+      }
+
+      :root {
+        --background-color: black;
+        --text-color: hsl(0, 0%, 100%);
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .wrapper {
+        display: grid;
+        place-content: center;
+        background-color: var(--background-color);
+        min-height: 10vh;
+        font-size: clamp(0.5rem, 0.5rem + 5vw, 4rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-color);
+      }
+
+      .wrapper>div {
+        grid-area: 1/1/-1/-1;
+      }
+
+      .top {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+      }
+
+      .bottom {
+        clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+        color: transparent;
+        background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
+        background: linear-gradient(177deg, black 53%, var(--text-color) 65%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        transform: translateX(-0.02em);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container chat-container">
+      <div class="head">
+        <section class="wrapper">
+          <div class="top">InverseGPT</div>
+          <div class="bottom" aria-hidden="true">InverseGPT</div>
+        </section>
+      </div>
+      <div class="chat-box" id="chatBox">
+        <!-- Chat messages will be appended here -->
+      </div>
+      <form id="chatForm" class="input-group chat-fix">
+        <textarea class="form-control" id="messageInput" rows="1" placeholder="Enter your message" required></textarea>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary send-btn" type="button" onclick="sendMessage()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="bi bi-send" width="16" height="16">
+              <path fill-rule="evenodd" d="M15.854.146a.5.5 0 0 0-.708.708l.708-.708zM1.05 7.812a.5.5 0 0 1 .5-.562h11.793L8.147 2.146a.5.5 0 1 1 .707-.708L15.5 7.293a.5.5 0 0 1 0 .707l-6.646 6.147a.5.5 0 1 1-.708-.707L13.342 8H1.549a.5.5 0 0 1-.5-.562z" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function sendMessage() {
+        let message = document.getElementById('messageInput').value;
+        let reversedMessage = message.split('').reverse().join(''); // Simulate the text inversion
+        appendMessageToChatBox(`🧑 ${message}`, 'user-message');
+        setTimeout(() => {
+          appendMessageToChatBox(`🤖 ${reversedMessage}`, 'chatbot-message');
+        }, 1000);
+        document.getElementById('messageInput').value = ''; // Clear the input after sending
+      }
+
+      function appendMessageToChatBox(message, className) {
+        let chatBox = document.getElementById('chatBox');
+        let msgDiv = document.createElement('div');
+        msgDiv.classList.add('chat-message', className);
+        msgDiv.textContent = message;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+      document.getElementById('chatForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        sendMessage();
+      });
+    </script>
+  </body>
+</html>
