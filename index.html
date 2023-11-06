@@ -52,6 +52,10 @@
     .send-btn:focus {
       box-shadow: none;
     }
+    .send-btn:focus, .send-btn:hover, .send-btn:active {
+     color: white; /* This ensures text color is white even when the button is focused, hovered, or active */
+     outline: none; /* Removes the outline which might appear on focus */
+    }
     .form-control {
       border: 1px dashed #727272;
       font-size: larger;
