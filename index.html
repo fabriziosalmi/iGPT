@@ -89,16 +89,60 @@
       .emoji {
         filter: grayscale(100%);
       }
+
+
+ .audio-fx-toggle {
+  display: inline-flex;
+  background-color: #f0f0f0;
+  border: 1px solid #c8c8c8;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  text-align: left;
+  height: 39px;
+  font-size: larger;
+  margin-bottom: 20px;
+}
+
+.audio-fx-btn {
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 0px 13px;
+  border: none;
+    border-right-width: medium;
+    border-right-style: none;
+    border-right-color: currentcolor;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  flex: 1;
+  text-align: center;
+}
+
+.audio-fx-btn:not(:last-child) {
+  border-right: 1px solid #ccc; /* Only add border to the right of buttons except the last one */
+}
+
+.audio-fx-btn:hover,
+.audio-fx-btn.active {
+  background-color: #007bff; /* Active or hover state */
+  color: #fff;
+}
+
+.audiotogglelayout {
+    text-align: right;
+}
+
     </style>
   </head>
   <body>
     <div class="container chat-container">
       <div class="head">
-        <h1
-          style="font-family: Figtree,sans-serif;  color: #fff;  font-size: 51px;  background-color: #8c8c8c;  text-shadow: 0px 0px 19px #c4c2c2;  text-align: center;  -webkit-background-clip: text;  -moz-background-clip: text;"
-        >
+        <h1 style="font-family: Figtree,sans-serif;  color: #fff;  font-size: 51px;  background-color: #8c8c8c;  text-shadow: 0px 0px 19px #c4c2c2;  text-align: center;  -webkit-background-clip: text;  -moz-background-clip: text;">
           iGPT
-        </h1>
+        </h1>   
+        
       </div>
       <div class="chat-box" id="chatBox">
         <!-- Chat messages will be appended here -->
@@ -125,7 +169,7 @@
       <p
         style="text-align:center;font-size:small;padding-top:10px;color:#969696"
       >
-        InverseGPT can make mistakes. Consider checking important information.
+        InverseGPT can make mistakes. Consider checking important information. 
       </p>
     </div>
 
@@ -135,6 +179,48 @@
     <script>
             document.addEventListener('DOMContentLoaded', function() {
               console.log('DOM fully loaded and parsed');
+            
+              var currentSound = "tick.mp3"; // Default sound
+  var tickAudio = document.getElementById('tickSound'); // Get the audio element
+
+  // Update the audio source based on selection
+  function updateAudioSource(sound) {
+    if (sound) {
+      tickAudio.src = sound;
+      tickAudio.load();
+    }
+  }
+
+  //add
+  document.addEventListener('DOMContentLoaded', () => {
+  let firstButton = document.querySelector('.audio-fx-btn');
+  if (firstButton) {
+    firstButton.click(); // Trigger a click to select the first sound option
+  }
+});
+  
+// Event listeners for audio FX buttons
+document.querySelectorAll('.audio-fx-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    document.querySelectorAll('.audio-fx-btn').forEach(btn => btn.classList.remove('active')); // Remove active class from all buttons
+    this.classList.add('active'); // Add active class to the clicked button
+    currentSound = this.getAttribute('data-sound'); // Update the current sound
+    updateAudioSource(currentSound);
+  });
+});
+
+  // Attach event listener to the textarea for keypress event
+  document.getElementById('messageInput').addEventListener('keypress', function(event) {
+    if (event.key !== 'Enter' && currentSound) { // Check if a sound is selected
+      tickAudio.currentTime = 0; // Rewind to the start
+      tickAudio.play(); // Play the sound
+    } else if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent the default Enter key behavior
+      sendMessage();
+    }
+  });
+
+
 
               // Attach event listeners
               document.getElementById('sendButton').addEventListener('click', sendMessage);
@@ -251,10 +337,18 @@
     </script>
 
     <div style="text-align: center;">
-      <br />
-      <a href="https://github.com/fabriziosalmi/iGPT" target="_blank"><img src="https://img.shields.io/badge/GET-FUN-lightgrey"/></a>
+                <!-- Audio FX Selection Toggle -->
+                <div id="audioFxSelection" class="audio-fx-toggle audiotogglelayout">
+                    <button class="audio-fx-btn" data-sound="tick.mp3">🔊</button>
+                    <button class="audio-fx-btn" data-sound="">🔇</button>
     </div>
+      <br />
+      <a href="https://github.com/fabriziosalmi/InverseGPT" target="_blank"
+        ><img src="https://img.shields.io/badge/GitHub-project-lightgrey"
+      /></a>
+    </div>
+
     <script src="boost.js"></script>
-    <script src="joke.js"></script>
+    <audio id="tickSound" src="tick.mp3" preload="auto"></audio>
   </body>
 </html>
