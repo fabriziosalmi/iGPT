@@ -1,10 +1,10 @@
 # InverseGPT
 
-Welcome to InverseGPT, a novel application designed to work inversely with the GPT (Generative Pre-trained Transformer) models, generating queries or prompts from given answers or outputs.
+Welcome to InverseGPT, a novel application designed to work inversely with the GPT (Generative Pre-trained Transformer) models, generating something fun from given questions or inputs.
 
 ## Overview
 
-InverseGPT takes the concept of generative AI and flips it, focusing on deducing the input that could have led to a given output. This can be especially useful for creating educational content, data analysis, and improving human-AI interaction.
+InverseGPT takes the concept of generative AI and flips it, focusing on deducing the input one message before that could have led to a given output. This can be especially useful for creating educational content, data analysis, and improving human-AI interaction.
 
 ## Live Demo
 
