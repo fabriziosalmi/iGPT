@@ -10,7 +10,7 @@ InverseGPT takes the concept of generative AI and flips it, focusing on deducing
 
 Experience InverseGPT in action: [InverseGPT Live Demo](https://fabriziosalmi.github.io/InverseGPT/)
 
-![#image](https://github.com/fabriziosalmi/InverseGPT/blob/main/Screenshot.png?raw=true)
+![#image](https://github.com/fabriziosalmi/InverseGPT/blob/main/InverseGPT.png?raw=true)
 
 ## Features
 
