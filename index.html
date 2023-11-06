@@ -1,215 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InverseGPT</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@900&family=Nunito:ital,wght@0,700;1,700&display=swap" rel="stylesheet"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InverseGPT</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@900&family=Nunito:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
 
-<style>
-    body {
-      background-color: #f7f7f7;
-      font-size: initial;
-      color: #3e3e3e;
-    }
-    .chat-container {
-      margin-top: 24px;
-    }
-    .chat-box {
-      background: #ffffff;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #979797;
-      height: 400px;
-      overflow-y: auto;
-      box-shadow: #e1e1e1 inset 0px 0px 15px 0px;
-        }
-    .chat-message {
-        padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: #fff inset 0px 0px 7px 0px;
-    }
-    .send-btn {
-      background-color: #007bff;
-      color: white;
-      border-radius: 0 10px 10px 0;
-      padding: 5px 16px;
-      font-size: 1.25rem;
-      font-weight: lighter;
-      line-height: 1.5;
-      width: 110px;
-      transition: background-color 0.15s ease-in-out;
-      box-shadow: inset 0 0px 7px 0 rgb(187, 187, 187);
-    }
-    .send-btn:hover {
-      background-color: #0056b3;
-      cursor: pointer;
-    }
-    .send-btn:focus {
-      box-shadow: none;
-    }
-        /* Add this to ensure the text color remains white */
-        .send-btn:focus, .send-btn:hover, .send-btn:active {
-        color: white; /* This ensures text color is white even when the button is focused, hovered, or active */
-        outline: none; /* Removes the outline which might appear on focus */
-    }
-    .form-control {
-      border: 1px dashed #727272;
-      font-size: larger;
-      border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-    }
-    .input-group {
-        margin-top: 10px;
+    <style>
+          body {
+            background-color: #f7f7f7;
+            font-size: initial;
+            color: #3e3e3e;
+          }
+          .chat-container {
+            margin-top: 24px;
+          }
+          .chat-box {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #979797;
+            height: 400px;
+            overflow-y: auto;
+            box-shadow: #e1e1e1 inset 0px 0px 15px 0px;
+              }
+          .chat-message {
+              padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        box-shadow: #fff inset 0px 0px 7px 0px;
+          }
+          .send-btn {
+            background-color: #007bff;
+            color: white;
+            border-radius: 0 10px 10px 0;
+            padding: 5px 16px;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            width: 130px;
+            transition: background-color 0.15s ease-in-out;
+            box-shadow: inset 0 0px 7px 0 rgb(187, 187, 187);
+          }
+          .send-btn:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+          }
+          .send-btn:focus {
+            box-shadow: none;
+          }
+              /* Add this to ensure the text color remains white */
+              .send-btn:focus, .send-btn:hover, .send-btn:active {
+              color: white; /* This ensures text color is white even when the button is focused, hovered, or active */
+              outline: none; /* Removes the outline which might appear on focus */
+          }
+          .form-control {
+            border: 1px dashed #727272;
+            font-size: larger;
+            border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+          }
+          .input-group {
+              margin-top: 10px;
 
-    }
-    .chatbot-message {
-      background-color: #ebf4fb;
-    }
-    .user-message {
-      background-color: #f4f1ed;
-    }
-    textarea.form-control {
-  height: max-content;
-}
-.grayscale {
-  filter: grayscale(100%);
-}
-.emoji {
-  filter: grayscale(100%);
-}
-  </style>
-</head>
-<body>
+          }
+          .chatbot-message {
+            background-color: #ebf4fb;
+          }
+          .user-message {
+            background-color: #f4f1ed;
+          }
+          textarea.form-control {
+        height: max-content;
+      }
+      .grayscale {
+        filter: grayscale(100%);
+      }
+      .emoji {
+        filter: grayscale(100%);
+      }
+    </style>
+  </head>
+  <body>
     <div class="container chat-container">
       <div class="head">
-        <h1 style="font-family: Figtree,sans-serif;  color: #fff;  font-size: 51px;  background-color: #8c8c8c;  text-shadow: 0px 0px 19px #c4c2c2;  text-align: center;  -webkit-background-clip: text;  -moz-background-clip: text;">iGPT</h1>
+        <h1
+          style="font-family: Figtree,sans-serif;  color: #fff;  font-size: 51px;  background-color: #8c8c8c;  text-shadow: 0px 0px 19px #c4c2c2;  text-align: center;  -webkit-background-clip: text;  -moz-background-clip: text;"
+        >
+          iGPT
+        </h1>
       </div>
-    <div class="chat-box" id="chatBox">
+      <div class="chat-box" id="chatBox">
         <!-- Chat messages will be appended here -->
-    </div>
+      </div>
       <form id="chatForm" class="input-group">
-        <textarea class="form-control" id="messageInput" rows="1" placeholder="✍️ Enter your message" required></textarea>
+        <textarea
+          class="form-control"
+          id="messageInput"
+          rows="1"
+          placeholder="✍️ Enter your message"
+          required
+        ></textarea>
         <div class="input-group-append">
-          <button class="btn send-btn" type="button" id="sendButton" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;">
+          <button
+            class="btn send-btn"
+            type="button"
+            id="sendButton"
+            style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;"
+          >
             <b>SEND</b>
           </button>
         </div>
       </form>
-      <p style="text-align:center;font-size:small;padding-top:10px;color:#969696">InverseGPT can make mistakes. Consider checking important information.</p>
+      <p
+        style="text-align:center;font-size:small;padding-top:10px;color:#969696"
+      >
+        InverseGPT can make mistakes. Consider checking important information.
+      </p>
     </div>
-  
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM fully loaded and parsed');
-  
-        // Attach event listeners
-        document.getElementById('sendButton').addEventListener('click', sendMessage);
-        document.getElementById('messageInput').addEventListener('keypress', function(event) {
-          if (event.key === 'Enter') {
-            event.preventDefault();
-            sendMessage();
-          }
-        });
-  
-        // Display welcome message after 1 second
-        setTimeout(() => {
-          sendWelcomeMessage();
-        }, 1000);
+            document.addEventListener('DOMContentLoaded', function() {
+              console.log('DOM fully loaded and parsed');
 
-        function sendWelcomeMessage() {
-          console.log('Sending welcome message...');
-          const welcomeMessages = [
-          "Hello and welcome! How can I assist you today?",
-          "Hi there! I'm here to help you with any questions you might have.",
-          "Greetings! What can I do for you on this fine day?",
-          "Welcome! Feel free to ask me anything you need assistance with.",
-          "Good day! I'm at your service. How may I help you today?",
-          "Hello! Let's get started, what do you need help with?",
-          "Hi! I'm your friendly assistant. What can I help you with today?",
-          "Welcome aboard! How can I make your day better?",
-          "Hey there! Ready to assist you with whatever you need.",
-          "Hi! How can I assist you on your journey with us today?",
-          "Good [morning/afternoon/evening]! What brings you here today?",
-          "Hello! I'm here to ensure you have a great experience. What can I do for you?",
-          "Welcome to our site! If you have any questions, I'm here to help.",
-          "Hi, it's nice to meet you! Do you need assistance with anything?",
-          "Hello! I'm your virtual assistant. How may I be of service?",
-          "Welcome! I'm here to provide the information you need.",
-          "Hey! I'm ready when you are. What would you like to know?",
-          "Welcome! I can help with your inquiries. What do you need to find out?",
-          "Hello! How can I make your experience better today?",
-          "Welcome to our service! Ask me anything and I'll do my best to assist.",
-          "Hi! I'm just a message away if you need help. What can I assist you with?",
-          "Hello! What can I help you with on this lovely day?",
-          "Welcome! I'm here to answer your questions. What's on your mind?",
-          "Hi there! Let me know how I can make your day a good one.",
-          "Hello, friend! What can I do for you today?",
-          "Hi there! Don't hesitate to ask if you need anything.",
-          "Welcome! I'm at your disposal. What are you curious about today?",
-          "Good to see you! How can I assist you with your query?",
-          "Hi! Whether you have a question or need support, I'm here to help.",
-          "Welcome! Tell me what you need and I'll do my best to help."
-                ];
+              // Attach event listeners
+              document.getElementById('sendButton').addEventListener('click', sendMessage);
+              document.getElementById('messageInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                  event.preventDefault();
+                  sendMessage();
+                }
+              });
 
-                const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
-                const randomWelcomeMessage = welcomeMessages[randomIndex];
-                console.log(randomWelcomeMessage);
-          appendMessageToChatBox(`🤖 ${randomWelcomeMessage}`, 'chatbot-message');
-        }
-  
-        function sendMessage() {
-          console.log('sendMessage called');
-          let message = document.getElementById('messageInput').value.trim();
-          if (message) {
+              // Display welcome message after 1 second
+              setTimeout(() => {
+                sendWelcomeMessage();
+              }, 1000);
+
+
+
+              function sendWelcomeMessage() {
+                console.log('Sending welcome message...');
+                const welcomeMessages = [
+                  "Hello and welcome! How can I assist you today?",
+                  "Hi there! I'm here to help you with any questions you might have.",
+                  "Greetings! What can I do for you on this fine day?",
+                  "Welcome! Feel free to ask me anything you need assistance with.",
+                  "Good day! I'm at your service. How may I help you today?",
+                  "Hello! Let's get started, what do you need help with?",
+                  "Hi! I'm your friendly assistant. What can I help you with today?",
+                  "Welcome aboard! How can I make your day better?",
+                  "Hey there! Ready to assist you with whatever you need.",
+                  "Hi! How can I assist you on your journey with us today?",
+                  "Good [morning/afternoon/evening]! What brings you here today?",
+                  "Hello! I'm here to ensure you have a great experience. What can I do for you?",
+                  "Welcome to our site! If you have any questions, I'm here to help.",
+                  "Hi, it's nice to meet you! Do you need assistance with anything?",
+                  "Hello! I'm your virtual assistant. How may I be of service?",
+                  "Welcome! I'm here to provide the information you need.",
+                  "Hey! I'm ready when you are. What would you like to know?",
+                  "Welcome! I can help with your inquiries. What do you need to find out?",
+                  "Hello! How can I make your experience better today?",
+                  "Welcome to our service! Ask me anything and I'll do my best to assist.",
+                  "Hi! I'm just a message away if you need help. What can I assist you with?",
+                  "Hello! What can I help you with on this lovely day?",
+                  "Welcome! I'm here to answer your questions. What's on your mind?",
+                  "Hi there! Let me know how I can make your day a good one.",
+                  "Hello, friend! What can I do for you today?",
+                  "Hi there! Don't hesitate to ask if you need anything.",
+                  "Welcome! I'm at your disposal. What are you curious about today?",
+                  "Good to see you! How can I assist you with your query?",
+                  "Hi! Whether you have a question or need support, I'm here to help.",
+                  "Welcome! Tell me what you need and I'll do my best to help."
+                      ];
+
+                      const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
+                      const randomWelcomeMessage = welcomeMessages[randomIndex];
+                      console.log(randomWelcomeMessage);
+                appendMessageToChatBox(`🤖 ${randomWelcomeMessage}`, 'chatbot-message');
+              }
+
+              function sendMessage() {
+        console.log('sendMessage called');
+        let message = document.getElementById('messageInput').value.trim();
+        if (message) {
+          // Check for the boost command
+          if (message.toLowerCase() === '/boost') {
+            const boostMessage = getBoostMessage(); // This function comes from boost.js
+            appendMessageToChatBox(`🤖 🚀 ${boostMessage}`, 'chatbot-message');
+          } else {
+            // Existing logic for sending and processing normal messages
             appendMessageToChatBox(`🧑 ${message}`, 'user-message');
             let reversedMessage = message.split('').reverse().join('');
             setTimeout(() => {
               appendMessageToChatBox(`🤖 ${reversedMessage}`, 'chatbot-message');
               console.log('Reversed message sent');
             }, 1000);
-            document.getElementById('messageInput').value = ''; // Clear the input after sending
+          }
+          document.getElementById('messageInput').value = ''; // Clear the input after sending
+        }
+      }
+
+
+              function handleBoostCommand() {
+          // This function will be in your main HTML file
+          const boostMessage = getBoostMessage(); // This function comes from boost.js
+          appendMessageToChatBox(`🚀 ${boostMessage}`, 'chatbot-message');
+          document.getElementById('messageInput').value = ''; // Clear the input after sending
+
+      }
+
+
+              function appendMessageToChatBox(message, className) {
+        let chatBox = document.getElementById('chatBox');
+        let msgDiv = document.createElement('div');
+        msgDiv.classList.add('chat-message', className);
+        chatBox.appendChild(msgDiv);
+
+        // Add each character one by one
+        let index = 0;
+        function addCharacter() {
+          if (index < message.length) {
+            msgDiv.textContent += message.charAt(index);
+            index++;
+            setTimeout(addCharacter, 5); // Adjust the speed as necessary
           }
         }
 
-        function appendMessageToChatBox(message, className) {
-          let chatBox = document.getElementById('chatBox');
-          let msgDiv = document.createElement('div');
-          msgDiv.classList.add('chat-message', className);
-          chatBox.appendChild(msgDiv);
-        
-          // Add each character one by one
-          let index = 0;
-          function addCharacter() {
-            if (index < message.length) {
-              msgDiv.textContent += message.charAt(index);
-              index++;
-              setTimeout(addCharacter, 5); // Adjust the speed as necessary
-            }
-          }
-        
-          // Start the process
-          addCharacter();
-        
-          chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
-        }
+        // Start the process
+        addCharacter();
+
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+      }
 
 
-      });
+            });
     </script>
 
-    <div style="text-align: center;padding-top:10px;">
-      <a href="https://github.com/fabriziosalmi/InverseGPT" target="_blank"><img src="https://img.shields.io/badge/GitHub-project-lightgrey"></a>
-    </div>  
-  
+    <div style="text-align: center;">
+      <br />
+      <a href="https://github.com/fabriziosalmi/InverseGPT" target="_blank"
+        ><img src="https://img.shields.io/badge/GitHub-project-lightgrey"
+      /></a>
+    </div>
+    <script src="boost.js"></script>
+    <script src="joke.js"></script>
   </body>
-  </html>
+</html>
