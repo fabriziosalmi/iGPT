@@ -8,9 +8,7 @@ InverseGPT takes the concept of generative AI and flips it, focusing on deducing
 
 ## Live Demo
 
-Experience InverseGPT in action: [InverseGPT Live Demo](https://fabriziosalmi.github.io/InverseGPT/)
-
-![#image](https://github.com/fabriziosalmi/InverseGPT/blob/main/InverseGPT.png?raw=true)
+Experience iGPT in action: [iGPT Live Demo](https://fabriziosalmi.github.io/iGPT/)
 
 ## Features
 
@@ -20,6 +18,6 @@ Experience InverseGPT in action: [InverseGPT Live Demo](https://fabriziosalmi.gi
 
 ## Contributions
 
-Your contributions are what make InverseGPT a better tool for everyone! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+Your contributions are what make iGPT a better tool for everyone! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 A special thank you to some chatbot who have helped shape this project.
