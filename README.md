@@ -1,4 +1,4 @@
-# InverseGPT
+# iGPT
 
 Welcome to InverseGPT, a novel application designed to work inversely with the GPT (Generative Pre-trained Transformer) models, generating something fun from given questions or inputs.
 
