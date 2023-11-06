@@ -91,9 +91,9 @@
       <div class="head">
         <h1 style="font-family: Figtree,sans-serif;  color: #fff;  font-size: 51px;  background-color: #8c8c8c;  text-shadow: 0px 0px 19px #c4c2c2;  text-align: center;  -webkit-background-clip: text;  -moz-background-clip: text;">iGPT</h1>
       </div>
-      <div class="chat-box" id="chatBox">
+    <div class="chat-box" id="chatBox">
         <!-- Chat messages will be appended here -->
-      </div>
+    </div>
       <form id="chatForm" class="input-group">
         <textarea class="form-control" id="messageInput" rows="1" placeholder="✍️ Enter your message" required></textarea>
         <div class="input-group-append">
@@ -125,42 +125,40 @@
         setTimeout(() => {
           sendWelcomeMessage();
         }, 1000);
-  
-
 
         function sendWelcomeMessage() {
           console.log('Sending welcome message...');
           const welcomeMessages = [
           "Hello and welcome! How can I assist you today?",
-"Hi there! I'm here to help you with any questions you might have.",
-"Greetings! What can I do for you on this fine day?",
-"Welcome! Feel free to ask me anything you need assistance with.",
-"Good day! I'm at your service. How may I help you today?",
-"Hello! Let's get started, what do you need help with?",
-"Hi! I'm your friendly assistant. What can I help you with today?",
-"Welcome aboard! How can I make your day better?",
-"Hey there! Ready to assist you with whatever you need.",
-"Hi! How can I assist you on your journey with us today?",
-"Good [morning/afternoon/evening]! What brings you here today?",
-"Hello! I'm here to ensure you have a great experience. What can I do for you?",
-"Welcome to our site! If you have any questions, I'm here to help.",
-"Hi, it's nice to meet you! Do you need assistance with anything?",
-"Hello! I'm your virtual assistant. How may I be of service?",
-"Welcome! I'm here to provide the information you need.",
-"Hey! I'm ready when you are. What would you like to know?",
-"Welcome! I can help with your inquiries. What do you need to find out?",
-"Hello! How can I make your experience better today?",
-"Welcome to our service! Ask me anything and I'll do my best to assist.",
-"Hi! I'm just a message away if you need help. What can I assist you with?",
-"Hello! What can I help you with on this lovely day?",
-"Welcome! I'm here to answer your questions. What's on your mind?",
-"Hi there! Let me know how I can make your day a good one.",
-"Hello, friend! What can I do for you today?",
-"Hi there! Don't hesitate to ask if you need anything.",
-"Welcome! I'm at your disposal. What are you curious about today?",
-"Good to see you! How can I assist you with your query?",
-"Hi! Whether you have a question or need support, I'm here to help.",
-"Welcome! Tell me what you need and I'll do my best to help."
+          "Hi there! I'm here to help you with any questions you might have.",
+          "Greetings! What can I do for you on this fine day?",
+          "Welcome! Feel free to ask me anything you need assistance with.",
+          "Good day! I'm at your service. How may I help you today?",
+          "Hello! Let's get started, what do you need help with?",
+          "Hi! I'm your friendly assistant. What can I help you with today?",
+          "Welcome aboard! How can I make your day better?",
+          "Hey there! Ready to assist you with whatever you need.",
+          "Hi! How can I assist you on your journey with us today?",
+          "Good [morning/afternoon/evening]! What brings you here today?",
+          "Hello! I'm here to ensure you have a great experience. What can I do for you?",
+          "Welcome to our site! If you have any questions, I'm here to help.",
+          "Hi, it's nice to meet you! Do you need assistance with anything?",
+          "Hello! I'm your virtual assistant. How may I be of service?",
+          "Welcome! I'm here to provide the information you need.",
+          "Hey! I'm ready when you are. What would you like to know?",
+          "Welcome! I can help with your inquiries. What do you need to find out?",
+          "Hello! How can I make your experience better today?",
+          "Welcome to our service! Ask me anything and I'll do my best to assist.",
+          "Hi! I'm just a message away if you need help. What can I assist you with?",
+          "Hello! What can I help you with on this lovely day?",
+          "Welcome! I'm here to answer your questions. What's on your mind?",
+          "Hi there! Let me know how I can make your day a good one.",
+          "Hello, friend! What can I do for you today?",
+          "Hi there! Don't hesitate to ask if you need anything.",
+          "Welcome! I'm at your disposal. What are you curious about today?",
+          "Good to see you! How can I assist you with your query?",
+          "Hi! Whether you have a question or need support, I'm here to help.",
+          "Welcome! Tell me what you need and I'll do my best to help."
                 ];
 
                 const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
@@ -182,38 +180,35 @@
             document.getElementById('messageInput').value = ''; // Clear the input after sending
           }
         }
-  
-
 
         function appendMessageToChatBox(message, className) {
-  let chatBox = document.getElementById('chatBox');
-  let msgDiv = document.createElement('div');
-  msgDiv.classList.add('chat-message', className);
-  chatBox.appendChild(msgDiv);
-
-  // Add each character one by one
-  let index = 0;
-  function addCharacter() {
-    if (index < message.length) {
-      msgDiv.textContent += message.charAt(index);
-      index++;
-      setTimeout(addCharacter, 5); // Adjust the speed as necessary
-    }
-  }
-
-  // Start the process
-  addCharacter();
-
-  chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
-}
+          let chatBox = document.getElementById('chatBox');
+          let msgDiv = document.createElement('div');
+          msgDiv.classList.add('chat-message', className);
+          chatBox.appendChild(msgDiv);
+        
+          // Add each character one by one
+          let index = 0;
+          function addCharacter() {
+            if (index < message.length) {
+              msgDiv.textContent += message.charAt(index);
+              index++;
+              setTimeout(addCharacter, 5); // Adjust the speed as necessary
+            }
+          }
+        
+          // Start the process
+          addCharacter();
+        
+          chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
 
 
       });
     </script>
 
-      <div style="text-align: center;">
-        <br>
-    <a href="https://github.com/fabriziosalmi/InverseGPT" target="_blank"><img src="https://img.shields.io/badge/GitHub-project-lightgrey"></a>
+    <div style="text-align: center;padding-top:10px;">
+      <a href="https://github.com/fabriziosalmi/InverseGPT" target="_blank"><img src="https://img.shields.io/badge/GitHub-project-lightgrey"></a>
     </div>  
   
   </body>
