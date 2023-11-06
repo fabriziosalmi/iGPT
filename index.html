@@ -39,7 +39,7 @@
       background-color: #007bff;
       color: white;
       border-radius: 0 10px 10px 0;
-      padding: 10px 16px;
+      padding: 7px 16px;
       font-size: 1.25rem;
       line-height: 1.5;
       width: 130px;
@@ -52,9 +52,10 @@
     .send-btn:focus {
       box-shadow: none;
     }
-    .send-btn:focus, .send-btn:hover, .send-btn:active {
-     color: white; /* This ensures text color is white even when the button is focused, hovered, or active */
-     outline: none; /* Removes the outline which might appear on focus */
+        /* Add this to ensure the text color remains white */
+        .send-btn:focus, .send-btn:hover, .send-btn:active {
+        color: white; /* This ensures text color is white even when the button is focused, hovered, or active */
+        outline: none; /* Removes the outline which might appear on focus */
     }
     .form-control {
       border: 1px dashed #727272;
@@ -72,6 +73,15 @@
     .user-message {
       background-color: #f4f1ed;
     }
+    textarea.form-control {
+  height: max-content;
+}
+.grayscale {
+  filter: grayscale(100%);
+}
+.emoji {
+  filter: grayscale(100%);
+}
   </style>
 </head>
 <body>
@@ -83,14 +93,14 @@
         <!-- Chat messages will be appended here -->
       </div>
       <form id="chatForm" class="input-group">
-        <textarea class="form-control" id="messageInput" rows="1" placeholder="Enter your message" required></textarea>
+        <textarea class="form-control" id="messageInput" rows="1" placeholder="✍️ Enter your message " required></textarea>
         <div class="input-group-append">
           <button class="btn send-btn" type="button" id="sendButton" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;">
             <b>SEND</b>
           </button>
         </div>
       </form>
-      <p style="text-align:center;font-size:small;padding-top:10px;color: #8a8a8a;">InverseGPT can make mistakes. Consider checking important information.</p>
+      <p style="text-align:center;font-size:small;padding-top:10px;color:#969696">InverseGPT can make mistakes. Consider checking important information.</p>
     </div>
   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -154,7 +164,6 @@
                 const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
                 const randomWelcomeMessage = welcomeMessages[randomIndex];
                 console.log(randomWelcomeMessage);
-          const welcomeMessage = "Welcome to InverseGPT! How can I help you today?";
           appendMessageToChatBox(`🤖 ${randomWelcomeMessage}`, 'chatbot-message');
         }
   
